@@ -123,27 +123,7 @@ Open the Studio URL returned by the recorder. In Studio you can:
 
 ## Workflow
 
-```txt
-Codex chat
-    |
-    v
-Codex uses packages/codex-skill/SKILL.md
-    |
-    v
-POST /api/sessions/start
-    |
-    v
-POST /api/sessions/:id/capture for intentional moments
-    |
-    v
-POST /api/sessions/:id/finish
-    |
-    v
-Review in local Studio
-    |
-    v
-Export Markdown, HTML, and JSON
-```
+![Stepglyph workflow diagram](./assets/stepglyph-workflow.svg)
 
 ## Recorder API
 

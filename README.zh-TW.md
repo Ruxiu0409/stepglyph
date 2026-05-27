@@ -109,27 +109,7 @@ Codex 應該依照內建 skill：
 
 ## 工作流程
 
-```txt
-Codex chat
-    |
-    v
-Codex uses packages/codex-skill/SKILL.md
-    |
-    v
-POST /api/sessions/start
-    |
-    v
-POST /api/sessions/:id/capture for intentional moments
-    |
-    v
-POST /api/sessions/:id/finish
-    |
-    v
-Review in local Studio
-    |
-    v
-Export Markdown, HTML, and JSON
-```
+![Stepglyph workflow diagram](./assets/stepglyph-workflow.svg)
 
 ## Recorder API
 
