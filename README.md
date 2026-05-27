@@ -1,28 +1,77 @@
-# Stepglyph
+![stepglyph cover](./assets/stepglyph-cover.svg)
 
-Stepglyph turns Codex Computer Use sessions into editable visual guides.
+# stepglyph
 
-Use your normal Codex chat, ask Codex to use Stepglyph, and Stepglyph records
-only the explicit steps Codex sends to the local recorder. When the task is
-done, open Studio, fix the guide, and export Markdown, HTML, or JSON.
+[![License: MIT](https://img.shields.io/badge/License-MIT-111827.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-339933.svg)](https://nodejs.org)
+[![Status](https://img.shields.io/badge/status-MVP-0F766E.svg)](https://github.com/Ruxiu0409/stepglyph)
 
-Stepglyph is local-first. It does not run a background screen recorder.
+A local-first Codex Computer Use recorder that turns real UI work into editable visual guides.
 
-![Stepglyph Studio overview](docs/assets/readme/step-003.png)
+Stop throwing away the useful parts of Computer Use sessions. `stepglyph`
+captures only the explicit steps Codex sends to a local recorder, stores the
+screenshots as project data, and opens a Studio where humans can clean up the
+guide before exporting Markdown, HTML, or JSON.
 
-## What It Does
+It does not run a background screen recorder, upload screenshots by default, or
+try to replace your normal Codex chat. It adds a small documentation layer around
+the moments you intentionally capture.
 
-- Records explicit Codex workflow steps through `start`, `capture`, and
-  `finish`.
-- Stores screenshots, step text, targets, and annotations as local project data.
-- Opens a local Studio for reviewing and editing the captured guide.
-- Exports portable documentation as Markdown, HTML, and JSON.
-- Keeps raw screenshots clean; annotations stay editable data.
+```bash
+git clone https://github.com/Ruxiu0409/stepglyph.git
+cd stepglyph
+npm install
+npm run dev
+```
 
-## Quick Start
+## Why stepglyph
 
-Clone the project, install dependencies, verify the build, and start the local
-recorder plus Studio service.
+Computer Use is great at doing work, but the useful explanation of that work can
+vanish as soon as the session ends.
+
+The classic failure:
+
+1. Codex opens the target app and completes the workflow.
+2. The important UI states were visible only for a few seconds.
+3. You later need a guide, bug report, onboarding doc, or changelog.
+4. You recreate screenshots and text by hand from memory.
+
+`stepglyph` adds an explicit capture step while the work is happening. Codex can
+send screenshots, target coordinates, step titles, and notes to a localhost
+recorder, then you refine the result in Studio.
+
+## Highlights
+
+### Explicit capture only
+
+The recorder accepts `start`, `capture`, and `finish` events. Nothing is recorded
+on a timer, and there is no always-on screen capture loop.
+
+### Real screenshots, editable annotations
+
+Screenshots are stored as clean PNG files. Markers, labels, target coordinates,
+sensitive flags, and export visibility stay as editable JSON data.
+
+### Local Studio
+
+Studio runs on `127.0.0.1` and lets you review the captured guide, edit step
+copy, move annotation targets, reorder steps, duplicate steps, delete noise, and
+export the final artifact.
+
+### Codex skill included
+
+The repository includes [packages/codex-skill/SKILL.md](packages/codex-skill/SKILL.md),
+so Codex can be instructed to use the local recorder from an ordinary chat.
+
+### Portable exports
+
+Each project can export Markdown, HTML, the full project JSON, and simplified
+steps JSON. The raw screenshots remain local files.
+
+## Get started
+
+Clone the project, install dependencies, run the checks, and start the local
+recorder plus Studio service:
 
 ```bash
 npm install
@@ -40,9 +89,9 @@ http://127.0.0.1:4317
 The screenshot below is from a real Computer Use run against that local Studio
 URL, captured from a clean Safari window.
 
-![Computer Use opens Stepglyph Studio](docs/assets/readme/step-001.png)
+![Computer Use opens stepglyph Studio](docs/assets/readme/step-001.png)
 
-## Use It With Codex
+## Use it with Codex
 
 Open your normal Codex session and ask:
 
@@ -50,7 +99,7 @@ Open your normal Codex session and ask:
 Use Stepglyph to record this workflow as an editable guide.
 ```
 
-Codex should follow the skill in [packages/codex-skill/SKILL.md](packages/codex-skill/SKILL.md):
+Codex should follow the included skill:
 
 1. Start a session with `POST /api/sessions/start`.
 2. Capture only meaningful documentation moments with
@@ -58,12 +107,12 @@ Codex should follow the skill in [packages/codex-skill/SKILL.md](packages/codex-
 3. Finish with `POST /api/sessions/:id/finish`.
 4. Give you the Studio URL.
 
-In the README capture run, Computer Use selected the captured click step so the
+In the README capture run, Computer Use selected a captured click step so the
 marker and inspector stayed editable in Studio.
 
 ![Computer Use selects a captured step](docs/assets/readme/step-002.png)
 
-## Edit And Export
+## Edit and export
 
 Open the Studio URL returned by the recorder. In Studio you can:
 
@@ -76,6 +125,30 @@ Open the Studio URL returned by the recorder. In Studio you can:
 - Export Markdown, HTML, and JSON.
 
 ![Computer Use exports the edited guide](docs/assets/readme/step-003.png)
+
+## Workflow
+
+```txt
+Codex chat
+    |
+    v
+Codex uses packages/codex-skill/SKILL.md
+    |
+    v
+POST /api/sessions/start
+    |
+    v
+POST /api/sessions/:id/capture for intentional moments
+    |
+    v
+POST /api/sessions/:id/finish
+    |
+    v
+Review in local Studio
+    |
+    v
+Export Markdown, HTML, and JSON
+```
 
 ## Recorder API
 
@@ -122,7 +195,7 @@ curl -s http://127.0.0.1:4317/api/projects/<project-id>/export \
   -d '{"formats":["markdown","html","json"]}'
 ```
 
-## Project Output
+## Project output
 
 A recording becomes a local project directory:
 
@@ -142,36 +215,65 @@ A recording becomes a local project directory:
 
 See [docs/data-format.md](docs/data-format.md) for the schema.
 
-## Regenerate This README Guide
+## Commands
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local recorder server and Studio. |
+| `npm test` | Run unit and e2e tests with Vitest. |
+| `npm run typecheck` | Type-check every workspace package. |
+| `npm run build` | Build the core, recorder server, Studio, and CLI packages. |
+| `npm run record:readme` | Replay real Computer Use screenshots through the recorder and regenerate README guide assets. |
+
+## Repo layout
+
+| Path | Description |
+| --- | --- |
+| `packages/core` | Schemas, storage, capture normalization, and export functions. |
+| `packages/recorder-server` | Express localhost API for explicit capture and Studio project loading. |
+| `packages/cli` | Developer entrypoint for running the local service. |
+| `apps/studio` | React/Vite local editor for reviewing and exporting captured guides. |
+| `packages/codex-skill` | Codex skill instructions for using the recorder intentionally. |
+| `fixtures/sample-project` | Local sample project loaded by Studio for development. |
+| `fixtures/readme-computer-use` | Real Computer Use screenshots used to regenerate this README. |
+| `docs/generated` | Guide files generated through the recorder/export flow. |
+
+## Regenerate this README guide
 
 This README uses real Computer Use screenshots from a clean local Safari window.
-Those screenshots are replayed through Stepglyph's own recorder/export flow so
-the docs exercise the same API and exporters users run locally. With the dev
-server running, regenerate them with:
+Those screenshots are replayed through `stepglyph`'s own recorder/export flow so
+the docs exercise the same API and exporters users run locally.
+
+With the dev server running:
 
 ```bash
 npm run record:readme
 ```
 
-The command records a new Stepglyph project through the local API using the PNG
-fixtures in [fixtures/readme-computer-use](fixtures/readme-computer-use),
-exports it, and updates:
+The command records a new project through the local API using the PNG fixtures in
+[fixtures/readme-computer-use](fixtures/readme-computer-use), exports it, and
+updates:
 
 - [docs/assets/readme](docs/assets/readme)
 - [docs/generated/stepglyph-readme-guide.md](docs/generated/stepglyph-readme-guide.md)
 - [docs/generated/stepglyph-readme-recording.json](docs/generated/stepglyph-readme-recording.json)
 
-## Packages
+## Development
 
-- `@stepglyph/core`: schemas, storage, and export functions.
-- `@stepglyph/recorder-server`: localhost API for explicit capture.
-- `@stepglyph/cli`: developer entrypoint for the local service.
-- `@stepglyph/studio`: local web editor.
-- `packages/codex-skill`: Codex skill instructions.
+```bash
+npm install
+npm test
+npm run typecheck
+npm run build
+npm run dev
+```
 
-## Privacy Model
+This project is currently an npm workspace MVP with a React Studio, Express
+recorder API, and TypeScript core package.
 
-Stepglyph is designed around trust:
+## Privacy model
+
+`stepglyph` is designed around trust:
 
 - No background screen recording.
 - No timer-based screenshots.
@@ -182,3 +284,16 @@ Stepglyph is designed around trust:
 - Sensitive steps can be flagged before export.
 
 See [docs/privacy.md](docs/privacy.md).
+
+## Positioning
+
+`stepglyph` is not a task runner, browser automation framework, video recorder,
+cloud screenshot service, or replacement for Codex.
+
+It is a local documentation companion for Computer Use: small enough to run from
+a cloned repository, explicit enough to avoid surprise recording, and editable
+enough that a human can turn raw agent work into a guide worth sharing.
+
+## License
+
+MIT
