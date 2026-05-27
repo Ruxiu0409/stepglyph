@@ -1,12 +1,12 @@
-![stepglyph product cover](./assets/stepglyph-cover.svg)
+![Stepglyph product cover](./assets/stepglyph-cover.svg)
 
-# stepglyph
+# Stepglyph
 
 English | [繁體中文](./README.zh-TW.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-111827.svg)](./LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-339933.svg)](https://nodejs.org)
-[![Status](https://img.shields.io/badge/status-MVP-0F766E.svg)](https://github.com/Ruxiu0409/stepglyph)
+[![Status](https://img.shields.io/badge/status-MVP-0F766E.svg)](https://github.com/Stepglyph/Stepglyph)
 
 A local-first Codex Computer Use recorder that turns real UI work into editable visual guides.
 
@@ -20,8 +20,8 @@ try to replace your normal Codex chat. It adds a small documentation layer aroun
 the moments you intentionally capture.
 
 ```bash
-git clone https://github.com/Ruxiu0409/stepglyph.git
-cd stepglyph
+git clone https://github.com/Stepglyph/Stepglyph.git
+cd Stepglyph
 npm install
 npm run dev
 ```

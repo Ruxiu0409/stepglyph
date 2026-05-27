@@ -1,12 +1,12 @@
-![stepglyph product cover](./assets/stepglyph-cover.svg)
+![Stepglyph product cover](./assets/stepglyph-cover.svg)
 
-# stepglyph
+# Stepglyph
 
 [English](./README.md) | 繁體中文
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-111827.svg)](./LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-339933.svg)](https://nodejs.org)
-[![Status](https://img.shields.io/badge/status-MVP-0F766E.svg)](https://github.com/Ruxiu0409/stepglyph)
+[![Status](https://img.shields.io/badge/status-MVP-0F766E.svg)](https://github.com/Stepglyph/Stepglyph)
 
 一個 local-first 的 Codex Computer Use 錄製工具，把真實 UI 操作轉成可編輯的視覺化教學文件。
 
@@ -18,8 +18,8 @@
 對話加上一層小而明確的文件化流程。
 
 ```bash
-git clone https://github.com/Ruxiu0409/stepglyph.git
-cd stepglyph
+git clone https://github.com/Stepglyph/Stepglyph.git
+cd Stepglyph
 npm install
 npm run dev
 ```
