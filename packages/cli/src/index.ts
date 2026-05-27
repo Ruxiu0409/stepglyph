@@ -7,6 +7,7 @@ import { createRecorderServer } from "@stepglyph/recorder-server";
 export type DevOptions = {
   command: "dev";
   port: number;
+  sampleProjectDir: string;
   workspaceDir: string;
 };
 
@@ -21,10 +22,12 @@ export function parseArgs(argv: string[]): ParsedCommand {
     return { command: "unknown", message: `Unknown command: ${command}` };
   }
 
+  const cwd = process.env.INIT_CWD ?? process.cwd();
   return {
     command: "dev",
     port: readNumberOption(rest, "--port", 4317),
-    workspaceDir: path.resolve(process.env.INIT_CWD ?? process.cwd(), readStringOption(rest, "--workspace", ".stepglyph"))
+    sampleProjectDir: path.resolve(cwd, "fixtures/sample-project"),
+    workspaceDir: path.resolve(cwd, readStringOption(rest, "--workspace", ".stepglyph"))
   };
 }
 
@@ -59,6 +62,7 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
   );
   const app = createRecorderServer({
     workspaceDir: parsed.workspaceDir,
+    sampleProjectDir: parsed.sampleProjectDir,
     studioDistDir
   });
 

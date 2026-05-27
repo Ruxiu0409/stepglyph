@@ -9,6 +9,7 @@ describe("cli", () => {
       command: "dev",
       port: 4317
     });
+    expect(parsed.command === "dev" ? parsed.sampleProjectDir : "").toContain("fixtures/sample-project");
     expect(parsed.command === "dev" ? parsed.workspaceDir : "").toContain(".stepglyph");
   });
 

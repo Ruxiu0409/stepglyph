@@ -231,7 +231,7 @@ The canonical schema is defined in [packages/core/src/schema.ts](packages/core/s
 | `packages/cli` | Developer entrypoint for running the local service. |
 | `apps/studio` | React/Vite local editor for reviewing and exporting captured guides. |
 | `packages/codex-skill` | Codex skill instructions for using the recorder intentionally. |
-| `fixtures/sample-project` | Built-in product walkthrough loaded by Studio as `sample-project`. |
+| `fixtures/sample-project` | Built-in real Safari walkthrough loaded by Studio as `sample-project`. |
 | `fixtures/readme-computer-use` | Real Computer Use screenshots used to regenerate this README. |
 
 ## Regenerate this README guide

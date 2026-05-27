@@ -2,34 +2,37 @@
   {
     "id": "step_001",
     "index": 1,
-    "title": "Start from a blank Studio",
-    "description": "Open the empty local Studio before any captures exist. This is the quiet starting point: no timeline, no background recording, and nothing saved until Codex sends an explicit step.",
+    "title": "Open Stepglyph locally in Safari",
+    "description": "Start from a fresh Safari window at 127.0.0.1:4317. The landing state explains that Stepglyph records only explicit moments from Codex, then opens the returned Studio URL.",
     "hidden": false,
     "sensitive": false,
     "action": {
       "type": "navigate",
-      "timestamp": "2026-05-27T10:00:00.000Z",
-      "app": "Stepglyph Studio",
-      "url": "http://127.0.0.1:4317"
+      "timestamp": "2026-05-27T08:21:50.183Z",
+      "app": "Safari",
+      "url": "http://127.0.0.1:4317",
+      "metadata": {
+        "redactions": []
+      }
     },
     "screenshot": {
       "path": "captures/step-001.png",
-      "width": 1200,
-      "height": 760,
-      "deviceScaleFactor": 1
+      "width": 2648,
+      "height": 1666,
+      "deviceScaleFactor": 2
     },
     "annotations": [
       {
-        "id": "ann_blank_canvas",
+        "id": "ann_v5jjV-VS",
         "type": "box",
         "target": {
           "kind": "rect",
-          "x": 0.38,
-          "y": 0.48,
-          "width": 0.22,
-          "height": 0.1
+          "x": 0.31,
+          "y": 0.46,
+          "width": 0.38,
+          "height": 0.13
         },
-        "label": "Empty Studio",
+        "label": "Open Stepglyph locally in Safari",
         "style": {
           "color": "#2563eb",
           "size": "medium",
@@ -43,36 +46,39 @@
   {
     "id": "step_002",
     "index": 2,
-    "title": "Ask Codex to use Stepglyph",
-    "description": "Use the normal Codex chat and ask it to record the workflow as an editable guide. Codex starts a local session instead of recording the screen continuously.",
+    "title": "Open the returned Studio URL",
+    "description": "After Codex starts a Stepglyph session, open the returned /studio/<project> URL in Safari. The Studio shows the guide title, the captured timeline, the screenshot canvas, and the inspector.",
     "hidden": false,
     "sensitive": false,
     "action": {
-      "type": "result",
-      "timestamp": "2026-05-27T10:00:30.000Z",
-      "app": "Codex",
-      "url": "codex://chat"
+      "type": "navigate",
+      "timestamp": "2026-05-27T08:22:56.697Z",
+      "app": "Safari",
+      "url": "http://127.0.0.1:4317/studio/sample-project",
+      "metadata": {
+        "redactions": []
+      }
     },
     "screenshot": {
       "path": "captures/step-002.png",
-      "width": 1200,
-      "height": 760,
-      "deviceScaleFactor": 1
+      "width": 2648,
+      "height": 1666,
+      "deviceScaleFactor": 2
     },
     "annotations": [
       {
-        "id": "ann_prompt",
+        "id": "ann_Uah00NqX",
         "type": "box",
         "target": {
           "kind": "rect",
-          "x": 0.16,
-          "y": 0.64,
-          "width": 0.54,
-          "height": 0.12
+          "x": 0,
+          "y": 0.06,
+          "width": 0.2,
+          "height": 0.17
         },
-        "label": "Prompt Codex",
+        "label": "Open the returned Studio URL",
         "style": {
-          "color": "#0f766e",
+          "color": "#2563eb",
           "size": "medium",
           "labelPosition": "top-right"
         },
@@ -84,32 +90,37 @@
   {
     "id": "step_003",
     "index": 3,
-    "title": "Capture intentional moments",
-    "description": "Codex sends only meaningful documentation moments: a screenshot, title, description, action type, and normalized target. The marker remains editable in Studio.",
+    "title": "Review captured steps in Studio",
+    "description": "Refresh the Studio after Codex sends capture events. Each explicit capture appears in the left timeline and can be selected for editing without any background recording.",
     "hidden": false,
     "sensitive": false,
     "action": {
-      "type": "click",
-      "timestamp": "2026-05-27T10:01:10.000Z",
-      "app": "Stepglyph Studio",
-      "url": "http://127.0.0.1:4317/studio/sample-project"
+      "type": "result",
+      "timestamp": "2026-05-27T08:23:46.821Z",
+      "app": "Safari",
+      "url": "http://127.0.0.1:4317/studio/sample-project",
+      "metadata": {
+        "redactions": []
+      }
     },
     "screenshot": {
       "path": "captures/step-003.png",
-      "width": 1200,
-      "height": 760,
-      "deviceScaleFactor": 1
+      "width": 2648,
+      "height": 1666,
+      "deviceScaleFactor": 2
     },
     "annotations": [
       {
-        "id": "ann_capture_marker",
-        "type": "click-ring",
+        "id": "ann_U4zeG-Qs",
+        "type": "box",
         "target": {
-          "kind": "point",
-          "x": 0.54,
-          "y": 0.48
+          "kind": "rect",
+          "x": 0.01,
+          "y": 0.15,
+          "width": 0.19,
+          "height": 0.2
         },
-        "label": "Captured target",
+        "label": "Review captured steps in Studio",
         "style": {
           "color": "#2563eb",
           "size": "medium",
@@ -123,36 +134,39 @@
   {
     "id": "step_004",
     "index": 4,
-    "title": "Edit and export the guide",
-    "description": "Review the generated steps, refine the copy, move markers, flag sensitive content, and export Markdown, HTML, JSON, and annotated PNG assets.",
+    "title": "Export the finished guide",
+    "description": "Click Export when the walkthrough is ready. Stepglyph writes Markdown, HTML, JSON, and annotated PNG assets locally so the guide can be committed with the project.",
     "hidden": false,
     "sensitive": false,
     "action": {
       "type": "click",
-      "timestamp": "2026-05-27T10:02:00.000Z",
-      "app": "Stepglyph Studio",
-      "url": "http://127.0.0.1:4317/studio/sample-project"
+      "timestamp": "2026-05-27T08:25:05.238Z",
+      "app": "Safari",
+      "url": "http://127.0.0.1:4317/studio/sample-project",
+      "metadata": {
+        "redactions": []
+      }
     },
     "screenshot": {
       "path": "captures/step-004.png",
-      "width": 1200,
-      "height": 760,
-      "deviceScaleFactor": 1
+      "width": 2648,
+      "height": 1666,
+      "deviceScaleFactor": 2
     },
     "annotations": [
       {
-        "id": "ann_export_button",
+        "id": "ann_N2F5ddEb",
         "type": "click-ring",
         "target": {
           "kind": "point",
-          "x": 0.74,
-          "y": 0.1
+          "x": 0.72,
+          "y": 0.08
         },
-        "label": "Export",
+        "label": "Export the finished guide",
         "style": {
           "color": "#2563eb",
           "size": "medium",
-          "labelPosition": "bottom-left"
+          "labelPosition": "top-right"
         },
         "editable": true,
         "hidden": false

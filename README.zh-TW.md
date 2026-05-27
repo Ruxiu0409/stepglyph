@@ -217,7 +217,7 @@ Canonical schema 定義在 [packages/core/src/schema.ts](packages/core/src/schem
 | `packages/cli` | 啟動本機服務的 developer entrypoint。 |
 | `apps/studio` | 用來檢視和匯出 captured guides 的 React/Vite 本機 editor。 |
 | `packages/codex-skill` | 讓 Codex 有意識地使用 recorder 的 skill instructions。 |
-| `fixtures/sample-project` | Studio 內建的 `sample-project` product walkthrough。 |
+| `fixtures/sample-project` | Studio 內建的 `sample-project` 真實 Safari 教學。 |
 | `fixtures/readme-computer-use` | 用來重新產生 README guide 的真實 Computer Use 截圖。 |
 
 ## 重新產生 README guide
