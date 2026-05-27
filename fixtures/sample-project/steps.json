@@ -24,12 +24,12 @@
         "type": "box",
         "target": {
           "kind": "rect",
-          "x": 0.25,
-          "y": 0.28,
-          "width": 0.48,
-          "height": 0.38
+          "x": 0.38,
+          "y": 0.48,
+          "width": 0.22,
+          "height": 0.1
         },
-        "label": "Blank guide",
+        "label": "Empty Studio",
         "style": {
           "color": "#2563eb",
           "size": "medium",

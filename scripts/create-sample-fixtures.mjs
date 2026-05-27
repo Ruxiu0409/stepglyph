@@ -4,11 +4,16 @@ import { deflateSync } from "node:zlib";
 const width = 1200;
 const height = 760;
 
-const states = ["blank-studio", "codex-prompt", "capture-marker", "export-guide"];
+const states = [
+  ["step-002.png", "codex-prompt"],
+  ["step-003.png", "capture-marker"],
+  ["step-004.png", "export-guide"]
+];
 
-states.forEach((state, index) => {
+// step-001.png is a real browser capture of an empty local Studio. Keep it checked in.
+states.forEach(([filename, state]) => {
   writeFileSync(
-    `fixtures/sample-project/captures/step-${String(index + 1).padStart(3, "0")}.png`,
+    `fixtures/sample-project/captures/${filename}`,
     makePng(state)
   );
 });
