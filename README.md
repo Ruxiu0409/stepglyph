@@ -86,10 +86,8 @@ The dev server starts on:
 http://127.0.0.1:4317
 ```
 
-The screenshot below is from a real Computer Use run against that local Studio
-URL, captured from a clean Safari window.
-
-![Computer Use opens stepglyph Studio](docs/assets/readme/step-001.png)
+Studio opens with a built-in sample project so you can try the editing and
+export flow immediately.
 
 ## Use it with Codex
 
@@ -107,10 +105,7 @@ Codex should follow the included skill:
 3. Finish with `POST /api/sessions/:id/finish`.
 4. Give you the Studio URL.
 
-In the README capture run, Computer Use selected a captured click step so the
-marker and inspector stayed editable in Studio.
-
-![Computer Use selects a captured step](docs/assets/readme/step-002.png)
+The captured click markers and inspector fields remain editable in Studio.
 
 ## Edit and export
 
@@ -123,8 +118,6 @@ Open the Studio URL returned by the recorder. In Studio you can:
 - Change labels, marker type, marker color, and visibility.
 - Reorder, duplicate, or delete steps.
 - Export Markdown, HTML, and JSON.
-
-![Computer Use exports the edited guide](docs/assets/readme/step-003.png)
 
 ## Workflow
 
@@ -215,7 +208,7 @@ A recording becomes a local project directory:
     steps.json
 ```
 
-See [docs/data-format.md](docs/data-format.md) for the schema.
+The canonical schema is defined in [packages/core/src/schema.ts](packages/core/src/schema.ts).
 
 ## Commands
 
@@ -238,13 +231,12 @@ See [docs/data-format.md](docs/data-format.md) for the schema.
 | `packages/codex-skill` | Codex skill instructions for using the recorder intentionally. |
 | `fixtures/sample-project` | Built-in product walkthrough loaded by Studio as `sample-project`. |
 | `fixtures/readme-computer-use` | Real Computer Use screenshots used to regenerate this README. |
-| `docs/generated` | Guide files generated through the recorder/export flow. |
 
 ## Regenerate this README guide
 
 This README uses real Computer Use screenshots from a clean local Safari window.
 Those screenshots are replayed through `stepglyph`'s own recorder/export flow so
-the docs exercise the same API and exporters users run locally.
+the local generated guide exercises the same API and exporters users run locally.
 
 With the dev server running:
 
@@ -254,12 +246,7 @@ npm run record:readme
 
 The command records a new project through the local API using the PNG fixtures in
 [fixtures/readme-computer-use](fixtures/readme-computer-use), exports it, and
-updates:
-
-- [docs/assets/readme](docs/assets/readme)
-- [docs/generated/assets](docs/generated/assets)
-- [docs/generated/stepglyph-readme-guide.md](docs/generated/stepglyph-readme-guide.md)
-- [docs/generated/stepglyph-readme-recording.json](docs/generated/stepglyph-readme-recording.json)
+writes ignored local artifacts under `docs/`.
 
 ## Development
 
@@ -285,8 +272,6 @@ recorder API, and TypeScript core package.
 - Capture happens only when Codex calls the recorder.
 - Typed values should be summarized or redacted.
 - Sensitive steps can be flagged before export.
-
-See [docs/privacy.md](docs/privacy.md).
 
 ## Positioning
 

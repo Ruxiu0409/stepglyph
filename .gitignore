@@ -3,6 +3,7 @@ dist/
 apps/*/dist/
 packages/*/dist/
 .stepglyph/
+docs/
 coverage/
 .DS_Store
 npm-debug.log*
