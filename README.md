@@ -44,31 +44,30 @@ recorder, then you refine the result in Studio.
 
 ## Highlights
 
-### Explicit capture only
+### Capture only the moments that matter
 
-The recorder accepts `start`, `capture`, and `finish` events. Nothing is recorded
-on a timer, and there is no always-on screen capture loop.
+No background recording, no noisy timeline. Stepglyph records only the steps
+Codex explicitly sends to your local recorder.
 
-### Real screenshots, editable annotations
+### Real screenshots, not reconstructed UI
 
-Screenshots are stored as clean PNG files. Markers, labels, target coordinates,
-sensitive flags, and export visibility stay as editable JSON data.
+Every guide is built from actual PNG screenshots, with editable markers,
+labels, targets, sensitive flags, and export visibility layered on top.
 
-### Local Studio
+### A local Studio for cleanup
 
-Studio runs on `127.0.0.1` and lets you review the captured guide, edit step
-copy, move annotation targets, reorder steps, duplicate steps, delete noise, and
-export the final artifact.
+Review the flow, rewrite step copy, move annotations, hide sensitive steps,
+remove noise, and shape the guide before anyone else sees it.
 
-### Codex skill included
+### Codex-ready by default
 
-The repository includes [packages/codex-skill/SKILL.md](packages/codex-skill/SKILL.md),
-so Codex can be instructed to use the local recorder from an ordinary chat.
+The included [Codex skill](packages/codex-skill/SKILL.md) gives Codex a clear
+recording protocol without changing your normal chat workflow.
 
-### Portable exports
+### Export guides you can actually ship
 
-Each project can export Markdown, HTML, annotated PNG assets, the full project
-JSON, and simplified steps JSON. The raw screenshots remain local files.
+Generate Markdown, HTML, JSON, and annotated PNG assets from the same captured
+project, while the raw screenshots remain local files.
 
 ## Get started
 
