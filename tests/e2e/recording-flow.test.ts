@@ -47,13 +47,14 @@ describe("explicit recording flow", () => {
     const exported = await invoke(app, "POST", `/api/projects/${start.body.projectId}/export`, {
       formats: ["markdown", "html", "json"]
     });
-    expect(exported.body.files.length).toBe(4);
+    expect(exported.body.files.length).toBe(6);
 
     const guide = await readFile(
       path.join(tmpDir, "projects", start.body.projectId, "exports", "guide.md"),
       "utf8"
     );
     expect(guide).toContain("## 2. Click settings");
+    expect(guide).toContain("assets/step-002-annotated.png");
   });
 });
 

@@ -1,5 +1,6 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { renderAnnotatedPng } from "./annotated-png.js";
 import { Project, ProjectWithSteps, Step } from "./schema.js";
 import { getProjectFiles, loadProject } from "./storage.js";
 
@@ -22,8 +23,12 @@ export async function exportProject(
   const warnings = createExportWarnings(projectWithSteps.steps);
 
   if (formats.includes("markdown")) {
+    const markdownAssets = await writeAnnotatedScreenshots(projectDir, projectWithSteps);
+    files.push(...markdownAssets.files);
     const file = path.join(exportsDir, "guide.md");
-    await writeFile(file, renderMarkdown(projectWithSteps), "utf8");
+    await writeFile(file, renderMarkdown(projectWithSteps, {
+      imagePathByStepId: markdownAssets.imagePathByStepId
+    }), "utf8");
     files.push(file);
   }
 
@@ -44,14 +49,51 @@ export async function exportProject(
   return { files, warnings };
 }
 
-export function renderMarkdown({ project, steps }: ProjectWithSteps): string {
+export function renderMarkdown(
+  { project, steps }: ProjectWithSteps,
+  options: { imagePathByStepId?: Map<string, string> } = {}
+): string {
   const visibleSteps = steps.filter((step) => !step.hidden);
   const body = visibleSteps.map((step, index) => {
     const description = step.description ? `\n\n${step.description}` : "";
-    return `## ${index + 1}. ${step.title}${description}\n\n![${escapeMarkdownAlt(step.title)}](${step.screenshot.path})`;
+    const screenshotPath = options.imagePathByStepId?.get(step.id) ?? step.screenshot.path;
+    return `## ${index + 1}. ${step.title}${description}\n\n![${escapeMarkdownAlt(step.title)}](${screenshotPath})`;
   });
 
   return [`# ${project.title}`, ...body].join("\n\n").trimEnd() + "\n";
+}
+
+async function writeAnnotatedScreenshots(
+  projectDir: string,
+  { steps }: ProjectWithSteps
+): Promise<{ files: string[]; imagePathByStepId: Map<string, string> }> {
+  const visibleSteps = steps.filter((step) => !step.hidden);
+  const assetsDir = path.join(projectDir, "exports", "assets");
+  await mkdir(assetsDir, { recursive: true });
+
+  const files: string[] = [];
+  const imagePathByStepId = new Map<string, string>();
+  for (const step of visibleSteps) {
+    const sourceFile = path.join(projectDir, step.screenshot.path);
+    const baseName = path.basename(step.screenshot.path, path.extname(step.screenshot.path));
+    const relativePath = path.posix.join("assets", `${baseName}-annotated.png`);
+    const file = path.join(assetsDir, `${baseName}-annotated.png`);
+    const visibleAnnotations = step.annotations.filter((annotation) => !annotation.hidden);
+    if (visibleAnnotations.length > 0) {
+      const source = await readFile(sourceFile);
+      try {
+        await writeFile(file, renderAnnotatedPng(source, visibleAnnotations));
+      } catch {
+        await copyFile(sourceFile, file);
+      }
+    } else {
+      await copyFile(sourceFile, file);
+    }
+    files.push(file);
+    imagePathByStepId.set(step.id, relativePath);
+  }
+
+  return { files, imagePathByStepId };
 }
 
 export function renderHtml({ project, steps }: ProjectWithSteps): string {

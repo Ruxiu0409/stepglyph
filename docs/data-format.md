@@ -9,6 +9,8 @@ stepglyph-output/
   captures/
     step-001.png
   exports/
+    assets/
+      step-001-annotated.png
     guide.md
     guide.html
     project.json

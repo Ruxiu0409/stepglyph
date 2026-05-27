@@ -66,7 +66,7 @@ describe("recorder server", () => {
       }
     );
     expect(exported.status).toBe(200);
-    expect(exported.body.files.length).toBe(4);
+    expect(exported.body.files.length).toBe(5);
   });
 
   it("rejects capture when no session is active", async () => {

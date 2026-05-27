@@ -1,10 +1,11 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const serverUrl = process.env.STEPGLYPH_SERVER_URL ?? "http://127.0.0.1:4317";
 const fixtureDir = "fixtures/readme-computer-use";
 const outputDir = "docs/assets/readme";
 const generatedDir = "docs/generated";
+const generatedAssetsDir = path.join(generatedDir, "assets");
 const deviceScaleFactor = 2;
 
 const captures = [
@@ -32,8 +33,10 @@ const captures = [
 ];
 
 await rm(outputDir, { recursive: true, force: true });
+await rm(generatedAssetsDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await mkdir(generatedDir, { recursive: true });
+await mkdir(generatedAssetsDir, { recursive: true });
 
 const start = await post("/api/sessions/start", {
   title: "How to use Stepglyph"
@@ -65,10 +68,15 @@ await post(`/api/projects/${start.projectId}/export`, {
 
 const projectDir = path.join(".stepglyph", "projects", start.projectId);
 for (let index = 1; index <= captures.length; index += 1) {
-  const name = `step-${String(index).padStart(3, "0")}.png`;
-  await writeFile(
-    path.join(outputDir, name),
-    await readFile(path.join(projectDir, "captures", name))
+  const baseName = `step-${String(index).padStart(3, "0")}`;
+  const annotatedName = `${baseName}-annotated.png`;
+  await copyFile(
+    path.join(projectDir, "exports", "assets", annotatedName),
+    path.join(outputDir, `${baseName}.png`)
+  );
+  await copyFile(
+    path.join(projectDir, "exports", "assets", annotatedName),
+    path.join(generatedAssetsDir, annotatedName)
   );
 }
 
@@ -80,8 +88,9 @@ await writeFile(
     projectId: start.projectId,
     projectDir,
     studioUrl: `${serverUrl}/studio/${start.projectId}`,
-    source: "real Computer Use screenshots from a clean local Safari window",
+    source: "real Computer Use screenshots from a clean local Safari window, exported as annotated PNGs",
     fixtureDir,
+    annotatedAssetsDir: path.join(projectDir, "exports", "assets"),
     generatedAt: new Date().toISOString()
   }, null, 2)}\n`,
   "utf8"

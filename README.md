@@ -1,4 +1,4 @@
-![stepglyph cover](./assets/stepglyph-cover.svg)
+![stepglyph product cover](./assets/stepglyph-cover.svg)
 
 # stepglyph
 
@@ -65,8 +65,8 @@ so Codex can be instructed to use the local recorder from an ordinary chat.
 
 ### Portable exports
 
-Each project can export Markdown, HTML, the full project JSON, and simplified
-steps JSON. The raw screenshots remain local files.
+Each project can export Markdown, HTML, annotated PNG assets, the full project
+JSON, and simplified steps JSON. The raw screenshots remain local files.
 
 ## Get started
 
@@ -207,6 +207,8 @@ A recording becomes a local project directory:
     step-001.png
     step-002.png
   exports/
+    assets/
+      step-001-annotated.png
     guide.md
     guide.html
     project.json
@@ -223,7 +225,7 @@ See [docs/data-format.md](docs/data-format.md) for the schema.
 | `npm test` | Run unit and e2e tests with Vitest. |
 | `npm run typecheck` | Type-check every workspace package. |
 | `npm run build` | Build the core, recorder server, Studio, and CLI packages. |
-| `npm run record:readme` | Replay real Computer Use screenshots through the recorder and regenerate README guide assets. |
+| `npm run record:readme` | Replay real Computer Use screenshots through the recorder and regenerate annotated README guide assets. |
 
 ## Repo layout
 
@@ -255,6 +257,7 @@ The command records a new project through the local API using the PNG fixtures i
 updates:
 
 - [docs/assets/readme](docs/assets/readme)
+- [docs/generated/assets](docs/generated/assets)
 - [docs/generated/stepglyph-readme-guide.md](docs/generated/stepglyph-readme-guide.md)
 - [docs/generated/stepglyph-readme-recording.json](docs/generated/stepglyph-readme-recording.json)
 
