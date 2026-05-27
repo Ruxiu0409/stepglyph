@@ -1,0 +1,62 @@
+[
+  {
+    "id": "step_001",
+    "index": 1,
+    "title": "Open the target page",
+    "description": "Codex navigates to the page that needs documentation.",
+    "hidden": false,
+    "sensitive": false,
+    "action": {
+      "type": "navigate",
+      "timestamp": "2026-05-27T10:00:20.000Z",
+      "app": "Browser",
+      "url": "https://example.com"
+    },
+    "screenshot": {
+      "path": "captures/step-001.png",
+      "width": 1200,
+      "height": 760,
+      "deviceScaleFactor": 1
+    },
+    "annotations": []
+  },
+  {
+    "id": "step_002",
+    "index": 2,
+    "title": "Click the settings button",
+    "description": "Codex selects the settings button and Stepglyph records the click target.",
+    "hidden": false,
+    "sensitive": false,
+    "action": {
+      "type": "click",
+      "timestamp": "2026-05-27T10:01:20.000Z",
+      "app": "Browser",
+      "url": "https://example.com/settings"
+    },
+    "screenshot": {
+      "path": "captures/step-002.png",
+      "width": 1200,
+      "height": 760,
+      "deviceScaleFactor": 1
+    },
+    "annotations": [
+      {
+        "id": "ann_001",
+        "type": "click-ring",
+        "target": {
+          "kind": "point",
+          "x": 0.5,
+          "y": 0.5
+        },
+        "label": "Click settings",
+        "style": {
+          "color": "#2563eb",
+          "size": "medium",
+          "labelPosition": "top-right"
+        },
+        "editable": true,
+        "hidden": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "@stepglyph/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stepglyph": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts dev",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@stepglyph/recorder-server": "file:../recorder-server"
+  }
+}

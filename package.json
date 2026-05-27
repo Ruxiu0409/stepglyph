@@ -1,0 +1,40 @@
+{
+  "name": "stepglyph",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn Codex Computer Use sessions into editable visual guides.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @stepglyph/core && npm run build -w @stepglyph/recorder-server && npm run build -w @stepglyph/studio && npm run build -w @stepglyph/cli",
+    "dev": "npm run dev -w @stepglyph/cli",
+    "test": "vitest run",
+    "typecheck": "npm run typecheck -w @stepglyph/core && npm run typecheck -w @stepglyph/recorder-server && npm run typecheck -w @stepglyph/studio && npm run typecheck -w @stepglyph/cli"
+  },
+  "dependencies": {
+    "express": "^5.0.1",
+    "nanoid": "^5.0.9",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "node-mocks-http": "^1.16.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}

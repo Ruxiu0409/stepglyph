@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "sample-project",
+  "title": "Sample Codex workflow",
+  "createdAt": "2026-05-27T10:00:00.000Z",
+  "updatedAt": "2026-05-27T10:03:00.000Z",
+  "source": {
+    "adapter": "codex-skill",
+    "agent": "codex"
+  },
+  "settings": {
+    "redactInputs": true,
+    "theme": "default"
+  }
+}
