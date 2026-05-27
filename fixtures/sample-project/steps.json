@@ -2,15 +2,15 @@
   {
     "id": "step_001",
     "index": 1,
-    "title": "Open the target page",
-    "description": "Codex navigates to the page that needs documentation.",
+    "title": "Start from a blank Studio",
+    "description": "Open the empty local Studio before any captures exist. This is the quiet starting point: no timeline, no background recording, and nothing saved until Codex sends an explicit step.",
     "hidden": false,
     "sensitive": false,
     "action": {
       "type": "navigate",
-      "timestamp": "2026-05-27T10:00:20.000Z",
-      "app": "Browser",
-      "url": "https://example.com"
+      "timestamp": "2026-05-27T10:00:00.000Z",
+      "app": "Stepglyph Studio",
+      "url": "http://127.0.0.1:4317"
     },
     "screenshot": {
       "path": "captures/step-001.png",
@@ -18,20 +18,40 @@
       "height": 760,
       "deviceScaleFactor": 1
     },
-    "annotations": []
+    "annotations": [
+      {
+        "id": "ann_blank_canvas",
+        "type": "box",
+        "target": {
+          "kind": "rect",
+          "x": 0.25,
+          "y": 0.28,
+          "width": 0.48,
+          "height": 0.38
+        },
+        "label": "Blank guide",
+        "style": {
+          "color": "#2563eb",
+          "size": "medium",
+          "labelPosition": "top-right"
+        },
+        "editable": true,
+        "hidden": false
+      }
+    ]
   },
   {
     "id": "step_002",
     "index": 2,
-    "title": "Click the settings button",
-    "description": "Codex selects the settings button and Stepglyph records the click target.",
+    "title": "Ask Codex to use Stepglyph",
+    "description": "Use the normal Codex chat and ask it to record the workflow as an editable guide. Codex starts a local session instead of recording the screen continuously.",
     "hidden": false,
     "sensitive": false,
     "action": {
-      "type": "click",
-      "timestamp": "2026-05-27T10:01:20.000Z",
-      "app": "Browser",
-      "url": "https://example.com/settings"
+      "type": "result",
+      "timestamp": "2026-05-27T10:00:30.000Z",
+      "app": "Codex",
+      "url": "codex://chat"
     },
     "screenshot": {
       "path": "captures/step-002.png",
@@ -41,18 +61,98 @@
     },
     "annotations": [
       {
-        "id": "ann_001",
+        "id": "ann_prompt",
+        "type": "box",
+        "target": {
+          "kind": "rect",
+          "x": 0.16,
+          "y": 0.64,
+          "width": 0.54,
+          "height": 0.12
+        },
+        "label": "Prompt Codex",
+        "style": {
+          "color": "#0f766e",
+          "size": "medium",
+          "labelPosition": "top-right"
+        },
+        "editable": true,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "id": "step_003",
+    "index": 3,
+    "title": "Capture intentional moments",
+    "description": "Codex sends only meaningful documentation moments: a screenshot, title, description, action type, and normalized target. The marker remains editable in Studio.",
+    "hidden": false,
+    "sensitive": false,
+    "action": {
+      "type": "click",
+      "timestamp": "2026-05-27T10:01:10.000Z",
+      "app": "Stepglyph Studio",
+      "url": "http://127.0.0.1:4317/studio/sample-project"
+    },
+    "screenshot": {
+      "path": "captures/step-003.png",
+      "width": 1200,
+      "height": 760,
+      "deviceScaleFactor": 1
+    },
+    "annotations": [
+      {
+        "id": "ann_capture_marker",
         "type": "click-ring",
         "target": {
           "kind": "point",
-          "x": 0.5,
-          "y": 0.5
+          "x": 0.54,
+          "y": 0.48
         },
-        "label": "Click settings",
+        "label": "Captured target",
         "style": {
           "color": "#2563eb",
           "size": "medium",
           "labelPosition": "top-right"
+        },
+        "editable": true,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "id": "step_004",
+    "index": 4,
+    "title": "Edit and export the guide",
+    "description": "Review the generated steps, refine the copy, move markers, flag sensitive content, and export Markdown, HTML, JSON, and annotated PNG assets.",
+    "hidden": false,
+    "sensitive": false,
+    "action": {
+      "type": "click",
+      "timestamp": "2026-05-27T10:02:00.000Z",
+      "app": "Stepglyph Studio",
+      "url": "http://127.0.0.1:4317/studio/sample-project"
+    },
+    "screenshot": {
+      "path": "captures/step-004.png",
+      "width": 1200,
+      "height": 760,
+      "deviceScaleFactor": 1
+    },
+    "annotations": [
+      {
+        "id": "ann_export_button",
+        "type": "click-ring",
+        "target": {
+          "kind": "point",
+          "x": 0.74,
+          "y": 0.1
+        },
+        "label": "Export",
+        "style": {
+          "color": "#2563eb",
+          "size": "medium",
+          "labelPosition": "bottom-left"
         },
         "editable": true,
         "hidden": false

@@ -29,6 +29,20 @@ describe("recorder server", () => {
     expect(response.body.backgroundRecording).toBe(false);
   });
 
+  it("serves the bundled sample project as a real product walkthrough", async () => {
+    const app = createRecorderServer({
+      workspaceDir: tmpDir,
+      sampleProjectDir: path.resolve("fixtures/sample-project")
+    });
+
+    const response = await invoke(app, "GET", "/api/projects/sample-project");
+
+    expect(response.status).toBe(200);
+    expect(response.body.project.title).toBe("Stepglyph product walkthrough");
+    expect(response.body.steps[0].title).toBe("Start from a blank Studio");
+    expect(response.body.steps[0].description).toContain("empty local Studio");
+  });
+
   it("starts, captures, finishes, loads, and exports a project", async () => {
     const app = createRecorderServer({ workspaceDir: tmpDir });
     const start = await invoke(app, "POST", "/api/sessions/start", { title: "Demo" });

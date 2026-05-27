@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import { mkdir } from "node:fs/promises";
+import { access, cp, mkdir } from "node:fs/promises";
 import path from "node:path";
 import {
   appendCapture,
@@ -15,6 +15,7 @@ import {
 export type RecorderServerOptions = {
   workspaceDir: string;
   studioDistDir?: string;
+  sampleProjectDir?: string;
 };
 
 type ActiveSession = {
@@ -108,7 +109,7 @@ export function createRecorderServer(options: RecorderServerOptions): Express {
 
   app.get("/api/projects/:id", async (req, res) => {
     try {
-      const projectDir = await resolveProjectDir(options.workspaceDir, req.params.id);
+      const projectDir = await resolveRequestProjectDir(options, req.params.id);
       res.json(await loadProject(projectDir));
     } catch (error) {
       sendError(res, error, 404);
@@ -117,7 +118,7 @@ export function createRecorderServer(options: RecorderServerOptions): Express {
 
   app.put("/api/projects/:id/steps", async (req, res) => {
     try {
-      const projectDir = await resolveProjectDir(options.workspaceDir, req.params.id);
+      const projectDir = await resolveRequestProjectDir(options, req.params.id);
       const steps = StepSchema.array().parse(req.body?.steps);
       res.json(await saveSteps(projectDir, steps));
     } catch (error) {
@@ -127,7 +128,7 @@ export function createRecorderServer(options: RecorderServerOptions): Express {
 
   app.post("/api/projects/:id/export", async (req, res) => {
     try {
-      const projectDir = await resolveProjectDir(options.workspaceDir, req.params.id);
+      const projectDir = await resolveRequestProjectDir(options, req.params.id);
       const formats = Array.isArray(req.body?.formats) && req.body.formats.length > 0
         ? req.body.formats
         : ["markdown", "html", "json"];
@@ -147,6 +148,31 @@ export function createRecorderServer(options: RecorderServerOptions): Express {
   }
 
   return app;
+}
+
+async function resolveRequestProjectDir(
+  options: RecorderServerOptions,
+  projectId: string
+): Promise<string> {
+  const projectDir = await resolveProjectDir(options.workspaceDir, projectId);
+  if (projectId === "sample-project") {
+    await seedSampleProject(projectDir, options.sampleProjectDir);
+  }
+  return projectDir;
+}
+
+async function seedSampleProject(projectDir: string, sampleProjectDir?: string): Promise<void> {
+  try {
+    await access(projectDir);
+    return;
+  } catch {
+    // Continue and copy the bundled fixture below.
+  }
+
+  const source = sampleProjectDir ?? path.resolve(process.cwd(), "fixtures/sample-project");
+  await access(source);
+  await mkdir(path.dirname(projectDir), { recursive: true });
+  await cp(source, projectDir, { recursive: true });
 }
 
 function sendError(res: express.Response, error: unknown, status = 400): void {

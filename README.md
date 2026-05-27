@@ -236,7 +236,7 @@ See [docs/data-format.md](docs/data-format.md) for the schema.
 | `packages/cli` | Developer entrypoint for running the local service. |
 | `apps/studio` | React/Vite local editor for reviewing and exporting captured guides. |
 | `packages/codex-skill` | Codex skill instructions for using the recorder intentionally. |
-| `fixtures/sample-project` | Local sample project loaded by Studio for development. |
+| `fixtures/sample-project` | Built-in product walkthrough loaded by Studio as `sample-project`. |
 | `fixtures/readme-computer-use` | Real Computer Use screenshots used to regenerate this README. |
 | `docs/generated` | Guide files generated through the recorder/export flow. |
 
