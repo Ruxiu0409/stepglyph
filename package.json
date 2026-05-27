@@ -12,6 +12,7 @@
   "scripts": {
     "build": "npm run build -w @stepglyph/core && npm run build -w @stepglyph/recorder-server && npm run build -w @stepglyph/studio && npm run build -w @stepglyph/cli",
     "dev": "npm run dev -w @stepglyph/cli",
+    "record:readme": "node scripts/record-readme-guide.mjs",
     "test": "vitest run",
     "typecheck": "npm run typecheck -w @stepglyph/core && npm run typecheck -w @stepglyph/recorder-server && npm run typecheck -w @stepglyph/studio && npm run typecheck -w @stepglyph/cli"
   },
