@@ -1,6 +1,8 @@
 {
-  "projectId": "proj_20260527_064224_v82NL2",
-  "projectDir": ".stepglyph/projects/proj_20260527_064224_v82NL2",
-  "studioUrl": "http://127.0.0.1:4317/studio/proj_20260527_064224_v82NL2",
-  "generatedAt": "2026-05-27T06:42:24.767Z"
+  "projectId": "proj_20260527_070604_4uPFzx",
+  "projectDir": ".stepglyph/projects/proj_20260527_070604_4uPFzx",
+  "studioUrl": "http://127.0.0.1:4317/studio/proj_20260527_070604_4uPFzx",
+  "source": "real Computer Use screenshots from a clean local Safari window",
+  "fixtureDir": "fixtures/readme-computer-use",
+  "generatedAt": "2026-05-27T07:06:04.092Z"
 }

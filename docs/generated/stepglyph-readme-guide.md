@@ -1,19 +1,19 @@
 # How to use Stepglyph
 
-## 1. Install and start Stepglyph
+## 1. Open the target page in Studio
 
-Install dependencies, run the checks, then start the local recorder and Studio service.
+Codex opens a clean local Safari window with Stepglyph Studio so the captured guide can be reviewed.
 
-![Install and start Stepglyph](captures/step-001.png)
+![Open the target page in Studio](captures/step-001.png)
 
-## 2. Ask Codex to use Stepglyph
+## 2. Select the captured click step
 
-In the normal Codex session, ask Codex to use the Stepglyph skill for the workflow you want documented.
+Computer Use selects the second step, revealing the recorded click marker and editable inspector fields.
 
-![Ask Codex to use Stepglyph](captures/step-002.png)
+![Select the captured click step](captures/step-002.png)
 
-## 3. Review and export in Studio
+## 3. Export the edited guide
 
-Open the Studio URL, edit steps and markers, then export Markdown, HTML, and JSON.
+Computer Use clicks Export and Studio reports that the local guide files were written.
 
-![Review and export in Studio](captures/step-003.png)
+![Export the edited guide](captures/step-003.png)

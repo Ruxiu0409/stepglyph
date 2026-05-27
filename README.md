@@ -37,7 +37,10 @@ The dev server starts on:
 http://127.0.0.1:4317
 ```
 
-![Install and start Stepglyph](docs/assets/readme/step-001.png)
+The screenshot below is from a real Computer Use run against that local Studio
+URL, captured from a clean Safari window.
+
+![Computer Use opens Stepglyph Studio](docs/assets/readme/step-001.png)
 
 ## Use It With Codex
 
@@ -55,7 +58,10 @@ Codex should follow the skill in [packages/codex-skill/SKILL.md](packages/codex-
 3. Finish with `POST /api/sessions/:id/finish`.
 4. Give you the Studio URL.
 
-![Ask Codex to use Stepglyph](docs/assets/readme/step-002.png)
+In the README capture run, Computer Use selected the captured click step so the
+marker and inspector stayed editable in Studio.
+
+![Computer Use selects a captured step](docs/assets/readme/step-002.png)
 
 ## Edit And Export
 
@@ -69,7 +75,7 @@ Open the Studio URL returned by the recorder. In Studio you can:
 - Reorder, duplicate, or delete steps.
 - Export Markdown, HTML, and JSON.
 
-![Review and export in Studio](docs/assets/readme/step-003.png)
+![Computer Use exports the edited guide](docs/assets/readme/step-003.png)
 
 ## Recorder API
 
@@ -138,15 +144,18 @@ See [docs/data-format.md](docs/data-format.md) for the schema.
 
 ## Regenerate This README Guide
 
-This README uses screenshots and guide text generated through Stepglyph's own
-recorder/export flow. With the dev server running, regenerate them with:
+This README uses real Computer Use screenshots from a clean local Safari window.
+Those screenshots are replayed through Stepglyph's own recorder/export flow so
+the docs exercise the same API and exporters users run locally. With the dev
+server running, regenerate them with:
 
 ```bash
 npm run record:readme
 ```
 
-The command records a new Stepglyph project through the local API, exports it,
-and updates:
+The command records a new Stepglyph project through the local API using the PNG
+fixtures in [fixtures/readme-computer-use](fixtures/readme-computer-use),
+exports it, and updates:
 
 - [docs/assets/readme](docs/assets/readme)
 - [docs/generated/stepglyph-readme-guide.md](docs/generated/stepglyph-readme-guide.md)
